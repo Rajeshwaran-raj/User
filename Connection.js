@@ -3,7 +3,7 @@ const Sequelize = require('sequelize');
 const pg = require('pg');
 
 const host = process.env.DB_HOST;
-const port = process.env.DB_PORT;
+const port = 3306;
 const name = process.env.DB_NAME;
 const user = process.env.DB_USERNAME;
 
@@ -16,8 +16,7 @@ console.log('Database password from .env: ', process.env.DB_PASSWORD);
 
 const sequelize = new Sequelize(name, user, process.env.DB_PASSWORD, {
   host,
-  dialect: 'postgres',
-  dialectModule: pg,
+  dialect: 'mysql',
   port,
   dialectOptions: {
     connectTimeout: 60000,

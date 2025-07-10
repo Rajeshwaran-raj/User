@@ -53,9 +53,34 @@ const UserList = () => {
 
   const formatDate = (iso) => new Date(iso).toLocaleString();
 
+  const handleExportCSV = () => {
+  const headers = ["Name", "Email", "Age", "City", "Created", "Updated"];
+  const rows = filteredUsers.map((user) => [
+    `${user.firstname} ${user.lastname}`,
+    user.email,
+    user.age,
+    user.city,
+    formatDate(user.created_at),
+    formatDate(user.updated_at),
+  ]);
+
+  const csvContent =
+    "data:text/csv;charset=utf-8," +
+    [headers, ...rows].map((e) => e.join(",")).join("\n");
+
+  const encodedUri = encodeURI(csvContent);
+  const link = document.createElement("a");
+  link.setAttribute("href", encodedUri);
+  link.setAttribute("download", "user_data.csv");
+  document.body.appendChild(link);
+  link.click();
+};
+
+
   return (
     <div className="user-list-container">
       <h2>User List</h2>
+      <button onClick={handleExportCSV} className="export-btn">Export to CSV</button><br></br>
       <input
         type="text"
         value={search}
@@ -88,7 +113,9 @@ const UserList = () => {
                 <td>{user.firstname} {user.lastname}</td>
                 <td>{user.email}</td>
                 <td>{user.age}</td>
-                <td>{user.city}</td>
+                <td>
+                    <span className={`badge badge-${user.city.toLowerCase()}`}>{user.city}</span>
+                 </td>
                 <td>{formatDate(user.created_at)}</td>
                 <td>{formatDate(user.updated_at)}</td>
                 <td>

@@ -29,7 +29,7 @@ export default function UserForm({ onUserCreated }) {
     if (!firstname || !lastname || !email || !age || !city) {
       return "All fields are required.";
     }
-    if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)) {
+    if (!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/) {
       return "Invalid email format.";
     }
     if (isNaN(age) || age <= 0) {

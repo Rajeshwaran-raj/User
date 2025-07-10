@@ -1,15 +1,14 @@
 // src/App.js
 import React, { useEffect, useState } from "react";
-import UserForm from "./components/UserForm";
-import UserList from "./components/UserList";
+import { BrowserRouter as Router, Routes, Route, Link, Navigate } from "react-router-dom";
+import CreateUserPage from "./Pages/CreateUserPage";
+import UserListPage from "./Pages/UserListPage";
 import "./styles.css";
 
-
 function App() {
-  const [refresh, setRefresh] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
 
-  // ⬇️ Apply dark-mode class to body tag directly
+  // Apply or remove dark-mode class on body
   useEffect(() => {
     if (isDarkMode) {
       document.body.classList.add("dark-mode");
@@ -19,25 +18,30 @@ function App() {
   }, [isDarkMode]);
 
   return (
-    <div className="main-container">
-      <div className="header-bar">
-        <h1 className="header">User Management</h1>
-        <button onClick={() => setIsDarkMode(!isDarkMode)} className="toggle-theme">
-          {isDarkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
-        </button>
-      </div>
+    <Router>
+      <div className="main-container">
+        {/* Header + Theme Toggle */}
+        <div className="header-bar">
+          <h1 className="header">User Management</h1>
+          <button onClick={() => setIsDarkMode(!isDarkMode)} className="toggle-theme">
+            {isDarkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
+          </button>
+        </div>
 
-      <div className="grid-boxes">
-        <div className="box left">
-          <h2 className="box-title">📝 Create User</h2>
-          <UserForm onUserCreated={() => setRefresh(!refresh)} />
-        </div>
-        <div className="box right">
-          <h2 className="box-title">📋 User List</h2>
-          <UserList key={refresh} />
-        </div>
+        {/* Navigation */}
+        <nav className="nav-bar">
+          <Link to="/create" className="nav-link">➕ Create User</Link>
+          <Link to="/users" className="nav-link">📋 User List</Link>
+        </nav>
+
+        {/* Routes */}
+        <Routes>
+          <Route path="/create" element={<CreateUserPage />} />
+          <Route path="/users" element={<UserListPage />} />
+          <Route path="/" element={<Navigate to="/users" />} />
+        </Routes>
       </div>
-    </div>
+    </Router>
   );
 }
 

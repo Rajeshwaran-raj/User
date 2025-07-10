@@ -1,16 +1,24 @@
-import React from 'react';
-import UserForm from './components/UserForm';
-import UserList from './components/UserList';
-import './styles.css';
+// src/App.js
+import React, { useState } from "react";
+import UserForm from "./components/UserForm";
+import UserList from "./components/UserList";
+import "./styles.css";
 
 function App() {
-  const [refresh, setRefresh] = React.useState(false);
+  const [refresh, setRefresh] = useState(false);
 
   return (
-    <div className="container">
-      <h1>User Management</h1>
-      <UserForm onUserCreated={() => setRefresh(!refresh)} />
-      <UserList key={refresh} />
+    <div className="main-container">
+      <h1 className="header">User Management</h1>
+
+      <div className="grid-boxes">
+        <div className="box left">
+          <UserForm onUserCreated={() => setRefresh(!refresh)} />
+        </div>
+        <div className="box right">
+          <UserList key={refresh} />
+        </div>
+      </div>
     </div>
   );
 }

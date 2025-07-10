@@ -1,19 +1,45 @@
-.container {
-  max-width: 600px;
-  margin: 2rem auto;
-  padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: #f4f6f9;
+  margin: 0;
+  padding: 0;
 }
 
-.form input {
-  display: block;
-  width: 100%;
-  margin-bottom: 0.5rem;
-  padding: 0.5rem;
+.main-container {
+  padding: 40px;
+  max-width: 1200px;
+  margin: auto;
 }
 
-button {
-  padding: 0.5rem 1rem;
-  margin-top: 0.5rem;
+.header {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #2c3e50;
 }
+
+.grid-boxes {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.box {
+  flex: 1;
+  min-width: 400px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 25px;
+}
+
+.left {
+  background: #e8f8f5;
+}
+
+.box.right {
+  background: #fef9e7;
+  overflow-x: auto;
+  max-height: 100%;
+}
+

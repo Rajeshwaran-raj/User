@@ -1,36 +1,51 @@
+/* src/components/UserList.css */
+
 .user-list-container {
-  padding: 20px;
+  width: 100%;
+  overflow-x: auto;
+  padding: 10px;
+  background-color: #fff3e6;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .search-input {
-  padding: 8px;
-  margin-bottom: 15px;
   width: 100%;
   max-width: 300px;
-  border-radius: 4px;
+  margin-bottom: 10px;
+  padding: 8px;
   border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .user-table {
   width: 100%;
+  min-width: 900px; /* allows wide columns */
   border-collapse: collapse;
 }
 
-.user-table th, .user-table td {
+.user-table th,
+.user-table td {
   padding: 12px;
   border: 1px solid #ddd;
   text-align: left;
+  white-space: nowrap; /* prevents text wrapping */
 }
 
 .user-table th {
-  background-color: #f4f4f4;
+  background-color: #fdebd0;
+  color: #34495e;
 }
 
 .delete-btn {
-  padding: 6px 12px;
-  color: white;
+  padding: 5px 10px;
   background-color: #e74c3c;
   border: none;
+  color: white;
   border-radius: 4px;
   cursor: pointer;
+}
+
+.delete-btn:hover {
+  background-color: #c0392b;
 }

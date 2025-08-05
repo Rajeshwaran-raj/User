@@ -1,39 +1,81 @@
-.user-form-container {
+/* src/components/UserForm.css */
+
+.create-user-form-container {
   padding: 20px;
   margin-bottom: 30px;
   border: 1px solid #ccc;
   border-radius: 8px;
+  background-color: #fefefe;
 }
 
-.user-form input {
-  width: 90%;
-  margin-bottom: 10px;
+.create-user-form input {
+  width: 95%;
+  margin-bottom: 12px;
   padding: 10px;
   border-radius: 4px;
   border: 1px solid #ccc;
+  font-size: 1rem;
 }
 
-.user-form button {
+.create-user-form button {
   background-color: #3498db;
   color: white;
-  padding: 10px 15px;
+  padding: 10px 18px;
   border: none;
   border-radius: 4px;
+  font-weight: 600;
+  font-size: 1rem;
   cursor: pointer;
 }
 
-.user-form button:disabled {
+.create-user-form button:disabled {
   background-color: #95a5a6;
 }
 
-.error-msg {
+.create-error-msg {
   color: #e74c3c;
   font-weight: 500;
   margin-bottom: 10px;
 }
 
-.success-msg {
+.create-success-msg {
   color: #2ecc71;
   font-weight: 500;
   margin-bottom: 10px;
+}
+
+
+/* 🌙 Dark Mode Styles for Create User Page */
+
+.dark-mode .create-user-form-container {
+  background-color: #1e1e1e;
+  border: 1px solid #444;
+  color: #f5f5f5;
+}
+
+.dark-mode .create-user-form input {
+  background-color: #2e2e2e;
+  color: #ffffff;
+  border: 1px solid #555;
+}
+
+.dark-mode .create-user-form input::placeholder {
+  color: #bbbbbb;
+}
+
+.dark-mode .create-user-form button {
+  background-color: #2980b9;
+}
+
+.dark-mode .create-user-form button:disabled {
+  background-color: #555;
+  color: #ccc;
+}
+
+.dark-mode .create-error-msg {
+  color: #e57373;
+}
+
+.dark-mode .create-success-msg {
+  color: #81c784;
 }

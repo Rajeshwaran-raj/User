@@ -1,0 +1,105 @@
+/* src/styles/LoginPage.css */
+
+.login-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, #f5f7fa, #c3cfe2);
+}
+
+.login-box {
+  background-color: #ffffff;
+  padding: 40px 30px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 400px;
+}
+
+.page-header {
+  text-align: center;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #2c3e50;
+}
+
+.user-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.user-form input {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+.user-form input:focus {
+  border-color: #3498db;
+  box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+}
+
+.user-form button {
+  padding: 12px;
+  font-size: 1rem;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.user-form button:hover {
+  background-color: #2980b9;
+}
+
+.error-msg {
+  color: #e74c3c;
+  font-weight: 500;
+  margin: 0;
+  text-align: center;
+}
+
+/* 🔥 Dark mode support */
+.dark-mode .login-container {
+  background: #121212;
+}
+
+.dark-mode .login-box {
+  background-color: #1e1e1e;
+  color: #ffffff;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.dark-mode .page-header {
+  color: #00dfd8;
+}
+
+.dark-mode .user-form input {
+  background-color: #2a2a2a;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+.dark-mode .user-form input:focus {
+  border-color: #00dfd8;
+  box-shadow: 0 0 6px #00dfd855;
+}
+
+.dark-mode .user-form button {
+  background-color: #00dfd8;
+  color: #000;
+}
+
+.dark-mode .user-form button:hover {
+  background-color: #00bfa5;
+}

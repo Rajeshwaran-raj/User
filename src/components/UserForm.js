@@ -67,48 +67,51 @@ export default function UserForm({ onUserCreated }) {
     }
   };
 
-  return (
-    <div className="user-form-container">
-      <h2>Create User</h2>
-      {error && <p className="error-msg">{error}</p>}
-      {success && <p className="success-msg">{success}</p>}
+// src/components/UserForm.js
 
-      <form onSubmit={handleSubmit} className="user-form">
-        <input
-          name="firstname"
-          placeholder="First Name"
-          value={formData.firstname}
-          onChange={handleChange}
-        />
-        <input
-          name="lastname"
-          placeholder="Last Name"
-          value={formData.lastname}
-          onChange={handleChange}
-        />
-        <input
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-        <input
-          name="age"
-          placeholder="Age"
-          value={formData.age}
-          onChange={handleChange}
-        />
-        <input
-          name="city"
-          placeholder="City"
-          value={formData.city}
-          onChange={handleChange}
-        />
+return (
+  <div className="create-user-form-container">
+    <h2>Create User</h2>
+    {error && <p className="create-error-msg">{error}</p>}
+    {success && <p className="create-success-msg">{success}</p>}
 
-        <button type="submit" disabled={loading}>
-          {loading ? "Creating..." : "Create User"}
-        </button>
-      </form>
-    </div>
-  );
+    <form onSubmit={handleSubmit} className="create-user-form">
+      <input
+        name="firstname"
+        placeholder="First Name"
+        value={formData.firstname}
+        onChange={handleChange}
+      />
+      <input
+        name="lastname"
+        placeholder="Last Name"
+        value={formData.lastname}
+        onChange={handleChange}
+      />
+      <input
+        name="email"
+        placeholder="Email"
+        value={formData.email}
+        onChange={handleChange}
+      />
+      <input
+        name="age"
+        placeholder="Age"
+        value={formData.age}
+        onChange={handleChange}
+      />
+      <input
+        name="city"
+        placeholder="City"
+        value={formData.city}
+        onChange={handleChange}
+      />
+
+      <button type="submit" disabled={loading}>
+        {loading ? "Creating..." : "Create User"}
+      </button>
+    </form>
+  </div>
+);
+
 }

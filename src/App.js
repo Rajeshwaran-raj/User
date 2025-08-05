@@ -1,8 +1,18 @@
 // src/App.js
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link, Navigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+
+import LoginPage from "./Pages/LoginPage";
+import DashboardPage from "./Pages/DashboardPage";
 import CreateUserPage from "./Pages/CreateUserPage";
 import UserListPage from "./Pages/UserListPage";
+import { isAuthenticated } from "./utils/auth";
+
 import "./styles.css";
 
 function App() {
@@ -19,28 +29,52 @@ function App() {
 
   return (
     <Router>
-      <div className="main-container">
-        {/* Header + Theme Toggle */}
-        <div className="header-bar">
-          <h1 className="header">User Management</h1>
-          <button onClick={() => setIsDarkMode(!isDarkMode)} className="toggle-theme">
-            {isDarkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
-          </button>
-        </div>
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
 
-        {/* Navigation */}
-        <nav className="nav-bar">
-          <Link to="/create" className="nav-link">➕ Create User</Link>
-          <Link to="/users" className="nav-link">📋 User List</Link>
-        </nav>
+        {/* Protected dashboard and subroutes */}
+        <Route
+          path="/dashboard"
+          element={
+            isAuthenticated() ? (
+              <DashboardPage isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/dashboard/create"
+          element={
+            isAuthenticated() ? (
+              <DashboardPage
+                isDarkMode={isDarkMode}
+                setIsDarkMode={setIsDarkMode}
+                page="create"
+              />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
+        <Route
+          path="/dashboard/users"
+          element={
+            isAuthenticated() ? (
+              <DashboardPage
+                isDarkMode={isDarkMode}
+                setIsDarkMode={setIsDarkMode}
+                page="users"
+              />
+            ) : (
+              <Navigate to="/login" />
+            )
+          }
+        />
 
-        {/* Routes */}
-        <Routes>
-          <Route path="/create" element={<CreateUserPage />} />
-          <Route path="/users" element={<UserListPage />} />
-          <Route path="/" element={<Navigate to="/users" />} />
-        </Routes>
-      </div>
+        {/* Default route */}
+        <Route path="*" element={<Navigate to="/dashboard/users" />} />
+      </Routes>
     </Router>
   );
 }

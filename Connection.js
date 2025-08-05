@@ -6,11 +6,13 @@ const host = process.env.DB_HOST;
 const port = process.env.DB_PORT;
 const name = process.env.DB_NAME;
 const user = process.env.DB_USERNAME;
+console.log("NODE_ENV is:", process.env.NODE_ENV);
+
 
 console.info('Connecting to database', {host, port, name, user});
 console.info('Using DB password from .env in Connection.js', process.env.DB_PASSWORD);
 
-console.log('Username from .env: ', process.env.DB_USER);
+console.log('Username from .env: ', process.env.DB_USERNAME);
 console.log('Database password from .env: ', process.env.DB_PASSWORD);
 
 

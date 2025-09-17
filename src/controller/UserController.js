@@ -98,7 +98,6 @@ static async getAllUsers(req, res) {
         });
     }
   }
-
 }
 
 module.exports = UserController;

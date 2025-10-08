@@ -9,8 +9,6 @@ import {
 
 import LoginPage from "./Pages/LoginPage";
 import DashboardPage from "./Pages/DashboardPage";
-import CreateUserPage from "./Pages/CreateUserPage";
-import UserListPage from "./Pages/UserListPage";
 import { isAuthenticated } from "./utils/auth";
 
 import "./styles.css";

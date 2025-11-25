@@ -2,6 +2,10 @@
   "name": "User",
   "version": "1.0.0",
   "main": "src/server.js",
+"engines": {
+  "node": "18.19.0",
+  "npm": "9.8.1"
+},
   "scripts": {
     "start": "npx sequelize-cli db:migrate --debug && node server.js"
   },

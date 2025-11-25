@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "main": "src/server.js",
 "engines": {
-  "node": "21.2.0",
-  "npm": "10.5.0"
+  "node": "22.1.0",
+  "npm": "10.8.0"
 },
   "scripts": {
     "start": "npx sequelize-cli db:migrate --debug && node server.js"

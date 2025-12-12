@@ -1,65 +1,76 @@
-const { DataTypes } = require('sequelize');
-const User  = require('../../models/user');
-const db = require('../../Connection');
-const UserRepository = require('../repository/UserRepository');
-
-const userModel = require('../../models/user')(
-  db.sequelize,
-  DataTypes,
-);
-
 class UserService {
   constructor() {
-    this.userRepository = new UserRepository({ model: userModel });
+    // In-memory users list
+    this.users = [
+      { id: 1, name: "Rajesh", email: "rajesh@example.com" },
+      { id: 2, name: "Arun", email: "arun@example.com" },
+      { id: 3, name: "Kumar", email: "kumar@example.com" },
+      { id: 4, name: "Suresh", email: "suresh@example.com" },
+      { id: 5, name: "Priya", email: "priya@example.com" },
+      { id: 6, name: "Deepa", email: "deepa@example.com" },
+      { id: 7, name: "Rahul", email: "rahul@example.com" },
+      { id: 8, name: "Vikram", email: "vikram@example.com" },
+      { id: 9, name: "Anjali", email: "anjali@example.com" },
+      { id: 10, name: "Mohan", email: "mohan@example.com" },
+    ];
+    console.log(`[${new Date().toISOString()}] UserService initialized with ${this.users.length} users`);
+  }
+
+  log(action, details) {
+    console.log(`[${new Date().toISOString()}] [UserService] ${action}:`, details);
   }
 
   async getAllUsers() {
-    const users = await this.userRepository.getAllUsers();
-    if (!users || users.length === 0) {
-      throw new NotFoundError(
-        constants.ERROR_CODES.USER_NOT_FOUND_CODE,
-        'No users found.'
-      );
-    }
-    return users;
+    this.log("getAllUsers", `Returning ${this.users.length} users`);
+    return this.users;
   }
 
   async getUserById(id) {
-    const user = await this.userRepository.getUserById(id);
-    if (!user) {
-      throw new NotFoundError(
-        constants.ERROR_CODES.USER_NOT_FOUND_CODE,
-        `User with ID ${id} not found.`
-      );
-    }
+    const user = this.users.find(u => u.id === Number(id));
+    this.log("getUserById", { id, found: user ? true : false });
     return user;
   }
 
   async createUser(data) {
-    console.info('Request to Create User in Service.', { data });
-    return await this.userRepository.createUser(data);
+    const newId = this.users.length > 0
+      ? Math.max(...this.users.map(u => u.id)) + 1
+      : 1;
+
+    const newUser = { id: newId, ...data };
+    this.users.push(newUser);
+
+    this.log("createUser", newUser);
+    return newUser;
   }
 
   async updateUser(id, updates) {
-    const user = await this.userRepository.updateUser(id, updates);
-    if (!user) {
-      throw new NotFoundError(
-        constants.ERROR_CODES.USER_NOT_FOUND_CODE,
-        `User with ID ${id} not found for update.`
-      );
+    const index = this.users.findIndex(u => u.id === Number(id));
+
+    if (index === -1) {
+      this.log("updateUser - NOT FOUND", { id });
+      return null;
     }
-    return user;
+
+    const updatedUser = { ...this.users[index], ...updates };
+    this.users[index] = updatedUser;
+
+    this.log("updateUser", updatedUser);
+    return updatedUser;
   }
 
   async deleteUser(id) {
-    const result = await this.userRepository.deleteUser(id);
-    if (!result) {
-      throw new NotFoundError(
-        constants.ERROR_CODES.USER_NOT_FOUND_CODE,
-        `User with ID ${id} not found for deletion.`
-      );
+    const index = this.users.findIndex(u => u.id === Number(id));
+
+    if (index === -1) {
+      this.log("deleteUser - NOT FOUND", { id });
+      return null;
     }
-    return result;
+
+    const deleted = this.users[index];
+    this.users.splice(index, 1);
+
+    this.log("deleteUser", deleted);
+    return deleted;
   }
 }
 

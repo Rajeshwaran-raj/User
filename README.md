@@ -4,6 +4,28 @@
 
 This document explains how to access and use the User API endpoints in the Express application.
 
+
+## Use tha below json file in
+project-root/
+│
+├─ data/
+│   └─ user.json
+
+``` json
+[
+  { "id": 1, "name": "Rajesh", "email": "rajesh@example.com" },
+  { "id": 2, "name": "Arun", "email": "arun@example.com" },
+  { "id": 3, "name": "Kumar", "email": "kumar@example.com" },
+  { "id": 4, "name": "Suresh", "email": "suresh@example.com" },
+  { "id": 5, "name": "Priya", "email": "priya@example.com" },
+  { "id": 6, "name": "Deepa", "email": "deepa@example.com" },
+  { "id": 7, "name": "Rahul", "email": "rahul@example.com" },
+  { "id": 8, "name": "Vikram", "email": "vikram@example.com" },
+  { "id": 9, "name": "Anjali", "email": "anjali@example.com" },
+  { "id": 10, "name": "Mohan", "email": "mohan@example.com" }
+]
+```
+
 ## Base URL
 
 ```

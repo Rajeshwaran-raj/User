@@ -36,7 +36,7 @@ class UserService {
     }
 
     try {
-      return JSON.parse(data);
+      return JSON.parse(Buffer.from(data, "base64").toString("utf-8"));
     } catch (err) {
       this.log("readUsers - INVALID JSON", err.message);
       throw new Error("user.json contains invalid JSON");
